@@ -7,7 +7,7 @@ public class Test56_Checking {
 	
 	public static void main(String[] args){
 		
-		String str = "ABC";
+		String str = "ABCD";
 		char[] ch = str.toCharArray();
 		Arrays.sort(ch);
 		String newStr = String.valueOf(ch);
@@ -21,10 +21,10 @@ public class Test56_Checking {
 	
 		StringBuffer sb = new StringBuffer();
 		
-		//dfs(n,0,0,str.toCharArray(),sb);
+		dfs(n,0,0,str.toCharArray(),sb);
 		
 		checked = new boolean[str.toCharArray().length];
-		dfs2(n,0,sb,str.toCharArray());
+		//dfs2(n,0,sb,str.toCharArray());
 		
 		return 1;
 		
@@ -39,6 +39,7 @@ public class Test56_Checking {
 			checked[i]= true;
 			sb.append(chArr[i]);
 			dfs2(n,idx+1,sb, chArr);
+
 			checked[i] = false;
 			sb.delete(idx, chArr.toString().length()-1);
 		}
@@ -46,14 +47,15 @@ public class Test56_Checking {
 	
 	public static void dfs(int n, int idx, int cnt,char[] chArr, StringBuffer sb){
 		
-		if(cnt == n){
-			//System.out.println(sb.toString());
+		if(cnt == 2){
+			System.out.println(sb.toString());
 			return;
 		}
 		for(int i=idx;i<chArr.length;i++){
 			sb.append(chArr[i]);
-			System.out.println(sb.toString());
+			//System.out.println(sb.toString());
 			dfs(n,i+1,cnt+1,chArr, sb);
+			System.out.println();
 			sb.delete(cnt, cnt+1);
 		}
 	}
